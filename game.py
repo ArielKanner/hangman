@@ -1,6 +1,9 @@
+# https://github.com/ArielKanner/hangman
+
+
 import random
 
-def valid_the_guess(player_guess, strng_of_right_or_wrong_guesses):
+def valid_the_guess(player_guess, strng_of_right_or_wrong_guesses): # get player guess. print appropriate messege.
     if len(player_guess) != 1 or not(('a' <= player_guess <= 'z' or 'A' <= player_guess <= 'Z')):
         print()
         print("Illegal input. choise again.")
@@ -12,7 +15,8 @@ def valid_the_guess(player_guess, strng_of_right_or_wrong_guesses):
     return True
 
 
-def print_current_state_and_amount_mistakes(list_of_right_guesses, amount_of_mistakes):
+def print_current_state_and_amount_mistakes(list_of_right_guesses, amount_of_mistakes): # print the current
+#state of the word and amount of mistakes that remaining.
     print()
     for i in range(len(list_of_right_guesses)):
         print(list_of_right_guesses[i], end="")
@@ -22,7 +26,8 @@ def print_current_state_and_amount_mistakes(list_of_right_guesses, amount_of_mis
     print("Enter a guess: ", end="")
 
 
-def update_guesses_and_mistakes_state(player_guess, cur_word, list_of_right_guesses, amount_of_mistakes):
+def update_guesses_and_mistakes_state(player_guess, cur_word, list_of_right_guesses, amount_of_mistakes): # update
+#the current state of the hidden word and the the amount of mistakes that remaining.
     if player_guess in cur_word:
         for i in range(len(cur_word)):
             if cur_word[i] == player_guess:
@@ -44,6 +49,7 @@ def print_win_or_loose(cur_word, list_of_right_guesses):  #print if the player w
 
 
 def one_game_procedure(amount_of_mistakes, list_of_right_guesses, strng_of_right_or_wrong_guesses, cur_word):
+# start one ruond of game.
     while amount_of_mistakes > 0:
             print_current_state_and_amount_mistakes(list_of_right_guesses, amount_of_mistakes)
 
@@ -82,7 +88,9 @@ def main():
     "family", "father", "mother", "brother", "sister",
     "friend", "people", "child", "baby"
 ]
-    want_continue = 'y'
+    print("\nWelcome!")
+    print("For start to play press 'y' (for exit press any key): ", end="")
+    want_continue = input()
 
     while want_continue in ('y','Y'):
 
@@ -90,7 +98,8 @@ def main():
         cur_word = random.choice(WORDS)
         list_of_right_guesses = []
         strng_of_right_or_wrong_guesses = ""
-
+        
+        
         for i in range(len(cur_word)):
             list_of_right_guesses.append('_')
 
@@ -98,7 +107,7 @@ def main():
 
         print_win_or_loose(cur_word, list_of_right_guesses) 
 
-        print("Want to play again? (y/n): ")
+        print("For continue to play press 'y' (for exit press any key): ", end="")
         want_continue = input()
 
  
